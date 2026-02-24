@@ -12,7 +12,20 @@ listaContactos = [];
 let Telefonos = [];
 let id;
 
+listaContactos = cargarContactosDeStorage();
+mostrarContactos();
 
+function cargarContactosDeStorage() {
+    const local = localStorage.getItem("listaContactos");
+    if (!local) return [];
+    try {
+        const data = JSON.parse(local);
+        return Array.isArray(data) ? data : [];
+    } catch (error) {
+        console.error("JSON inválido:", error);
+        return [];
+    }
+}
 
 // Añadir un contacto
 function cargarContacto() {
